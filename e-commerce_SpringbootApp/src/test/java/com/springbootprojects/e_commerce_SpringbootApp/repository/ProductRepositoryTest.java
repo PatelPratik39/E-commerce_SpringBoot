@@ -148,4 +148,10 @@ class ProductRepositoryTest {
         System.out.println(count);
     }
 
+    @Test
+    void existByIdMethod(){
+        Long id = 2L;
+        boolean result = productRepository.existsById(id);
+        System.out.println(result);
+    }
 }
