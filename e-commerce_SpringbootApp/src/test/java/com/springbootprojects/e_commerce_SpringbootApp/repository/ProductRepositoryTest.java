@@ -96,8 +96,18 @@ class ProductRepositoryTest {
 //        verify the save operation
         assertNotNull(savedProducts);
         assertEquals(3, savedProducts.size());
-
-
     }
+//     FindAll()
+    @Test
+    void findAllMethod(){
+        List<Product> products = productRepository.findAll();
+
+//        verify that the list is not empty
+        assertFalse(products.isEmpty(), "The Products List should not be empty!");
+        products.forEach((p) -> {
+            System.out.println(p.getProductName());
+        });
+    }
+
 
 }
