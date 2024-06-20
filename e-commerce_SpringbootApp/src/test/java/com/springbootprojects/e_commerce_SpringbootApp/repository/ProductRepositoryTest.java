@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -39,15 +40,63 @@ class ProductRepositoryTest {
     void updateUsingSaveMethod(){
 
 //        find and retrieve an entity by id
-        Long id = 3L;
+        Long id = 4L;
         Product product = productRepository.findById(id).get();
 
 //        update entity
-        product.setProductName("updated Product 3");
-        product.setDescription("Updated Product 3 description");
+        product.setProductName("updated Product 4");
+        product.setDescription("Updated Product 4 description");
 
 //        save updated entity to a database
         productRepository.save(product);
+
+    }
+
+    @Test
+    void findByIdMethod(){
+        Long id = 3L;
+        Product product = productRepository.findById(id).get();
+    }
+
+    @Test
+    void saveAll() {
+//        create Product
+        Product product1 = new Product();
+        product1.setProductName("product 6");
+        product1.setDescription("Product 6 description");
+        product1.setSku("600ABC");
+        product1.setPrice(new BigDecimal(69.99));
+        product1.setActive(false);
+        product1.setImageUrl("product6.png");
+
+
+        //        create Product
+        Product product2 = new Product();
+        product2.setProductName("product 7");
+        product2.setDescription("Product 7 description");
+        product2.setSku("700ABC");
+        product2.setPrice(new BigDecimal(79.99));
+        product2.setActive(false);
+        product2.setImageUrl("product7.png");
+
+
+        //        create Product
+        Product product3 = new Product();
+        product3.setProductName("product 8");
+        product3.setDescription("Product 8 description");
+        product3.setSku("800ABC");
+        product3.setPrice(new BigDecimal(89.99));
+        product3.setActive(false);
+        product3.setImageUrl("product8.png");
+
+
+//        save Product
+         List<Product> savedProducts = productRepository.saveAll(List.of(product1, product2, product3));
+//
+//        verify the save operation
+        assertNotNull(savedProducts);
+        assertEquals(3, savedProducts.size());
+
 
     }
 
