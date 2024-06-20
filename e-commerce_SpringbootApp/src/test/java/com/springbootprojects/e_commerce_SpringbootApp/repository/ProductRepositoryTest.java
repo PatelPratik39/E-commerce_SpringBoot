@@ -54,7 +54,7 @@ class ProductRepositoryTest {
 
     @Test
     void findByIdMethod(){
-        Long id = 3L;
+        Long id = 1L;
         Product product = productRepository.findById(id).get();
     }
 
@@ -107,6 +107,41 @@ class ProductRepositoryTest {
         products.forEach((p) -> {
             System.out.println(p.getProductName());
         });
+    }
+
+    @Test
+    void deleteByIdMethod() {
+         Long id= 10L;
+         productRepository.deleteById(id);
+
+    }
+
+    @Test
+    void deleteMethod(){
+//        find an enetity by Id
+        Long id = 11L;
+        Product product =productRepository.findById(id).get();
+
+//        delete entity
+        productRepository.delete(product);
+    }
+
+//    deleteAll
+//    @Test
+//    void deleteAllMethod(){
+//        productRepository.deleteAll();
+//    }
+
+//    deleteALl methid using specific parameter
+    @Test
+    void deleteAllMethod(){
+        Product product1 = productRepository.findById(6L).get();
+        Product product2 = productRepository.findById(7L).get();
+        Product product3 = productRepository.findById(8L).get();
+
+        productRepository.deleteAll(List.of(product1,product2,product3));
+
+
     }
 
 
