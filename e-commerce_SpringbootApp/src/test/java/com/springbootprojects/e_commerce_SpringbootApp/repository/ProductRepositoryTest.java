@@ -140,9 +140,12 @@ class ProductRepositoryTest {
         Product product3 = productRepository.findById(8L).get();
 
         productRepository.deleteAll(List.of(product1,product2,product3));
-
-
     }
 
+    @Test
+    void countMehtod(){
+        long count = productRepository.count();
+        System.out.println(count);
+    }
 
 }
