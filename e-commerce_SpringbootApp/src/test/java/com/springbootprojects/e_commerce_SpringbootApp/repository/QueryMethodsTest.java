@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -109,5 +110,21 @@ public class QueryMethodsTest {
             System.out.println(product.getId());
             System.out.println(product.getName());
         }));
+    }
+
+    @Test
+    void findByDateCreatedBetweenmethod(){
+
+//          Start Date
+        LocalDateTime startDate = LocalDateTime.of(2024, 6, 19, 0, 0);
+
+        // End Date
+        LocalDateTime endDate = LocalDateTime.of(2024, 6, 21, 0, 0);
+        List<Product> products =  productRepository.findByDateCreatedBetween(startDate, endDate);
+
+        products.forEach((product) -> {
+            System.out.println(product.getId());
+            System.out.println(product.getName());
+        } );
     }
 }
