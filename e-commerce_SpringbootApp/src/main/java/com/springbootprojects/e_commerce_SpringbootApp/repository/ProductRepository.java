@@ -3,6 +3,7 @@ package com.springbootprojects.e_commerce_SpringbootApp.repository;
 import com.springbootprojects.e_commerce_SpringbootApp.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -63,5 +64,20 @@ public interface ProductRepository  extends JpaRepository<Product, Long> {
     Product findByNameOrDescriptionJPQLIndexParam(String name, String description);
 
 
+//    Define JPQL Query using @Query annotation with Named Parameters
+
+    @Query("SELECT p FROM Product p where p.name = :name or p.description = :description")
+    Product findByNameOrDescriptionJPQLNamedParam(@Param("name") String name,
+                                                  @Param("description") String description);
+
+//    Define NATIVE SQL query using @Query annotation with index or position parameters
+
+    @Query(value = "select * from products p where p.name =?1 or p.description= ?2", nativeQuery = true)
+   Product findByNameOrDescriptionSQLIndexParam(String name, String description);
+
+//    Define Native SQL Query using @Query annotation with Named Parameters
+    @Query(value = "select * from products p where p.name = :name or p.description = :description",
+            nativeQuery = true)
+    Product findByNameOrDescriptionSQLNamedParam(String name, String description);
 
 }

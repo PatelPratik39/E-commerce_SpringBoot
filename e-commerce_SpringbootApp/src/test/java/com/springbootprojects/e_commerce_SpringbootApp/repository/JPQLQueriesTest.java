@@ -12,8 +12,15 @@ public class JPQLQueriesTest {
     private ProductRepository productRepository;
 
     @Test
-    void findByNameOrDescriptionJPQLIndexParam(){
+    void findByNameOrDescriptionJPQLIndexParamMethod(){
         Product product = productRepository.findByNameOrDescriptionJPQLIndexParam("product1", "Product 1 description");
+        System.out.println(product.getId());
+        System.out.println(product.getName());
+    }
+
+    @Test
+    void findByNameOrDescriptionJPQLNamedParamMethod() {
+        Product product = productRepository.findByNameOrDescriptionJPQLNamedParam("product 6", "product 6 description");
         System.out.println(product.getId());
         System.out.println(product.getName());
     }
