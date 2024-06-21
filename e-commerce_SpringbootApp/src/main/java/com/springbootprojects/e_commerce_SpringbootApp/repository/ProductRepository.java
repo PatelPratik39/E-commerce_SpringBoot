@@ -44,4 +44,10 @@ public interface ProductRepository  extends JpaRepository<Product, Long> {
 //    find Date between 2 dates
     List<Product> findByDateCreatedBetween(LocalDateTime startDate, LocalDateTime endDate);
 
+//    In Predicate Query Method
+    List<Product> findByNameIn(List<String> names);
+
+//    Limit the query
+    List<Product> findFirst6ByOrderByNameAsc();
+
 }

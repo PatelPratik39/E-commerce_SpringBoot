@@ -127,4 +127,22 @@ public class QueryMethodsTest {
             System.out.println(product.getName());
         } );
     }
+
+    @Test
+    void findByNameInMethod(){
+        List<Product> products = productRepository.findByNameIn(List.of("product 6", "product 7", "product 8"));
+        products.forEach((product) -> {
+            System.out.println(product.getId());
+            System.out.println(product.getName());
+        } );
+    }
+
+    @Test
+    void findFirst6ByOrderByNameAscMethod(){
+        List<Product> products = productRepository.findFirst6ByOrderByNameAsc();
+        products.forEach((product) -> {
+            System.out.println(product.getId());
+            System.out.println(product.getName());
+        } );
+    }
 }

@@ -62,32 +62,32 @@ class ProductRepositoryTest {
     void saveAll() {
 //        create Product
         Product product1 = new Product();
-        product1.setName("product 6");
-        product1.setDescription("Product 6 description");
-        product1.setSku("600ABC");
-        product1.setPrice(new BigDecimal(69.99));
+        product1.setName("product 1");
+        product1.setDescription("Product 1 description");
+        product1.setSku("200ABC");
+        product1.setPrice(new BigDecimal(19.99));
         product1.setActive(false);
-        product1.setImageUrl("product6.png");
+        product1.setImageUrl("product1.png");
 
 
         //        create Product
         Product product2 = new Product();
-        product2.setName("product 7");
-        product2.setDescription("Product 7 description");
-        product2.setSku("700ABC");
-        product2.setPrice(new BigDecimal(79.99));
+        product2.setName("product 2");
+        product2.setDescription("Product 2 description");
+        product2.setSku("100ABC");
+        product2.setPrice(new BigDecimal(29.99));
         product2.setActive(false);
-        product2.setImageUrl("product7.png");
+        product2.setImageUrl("product2.png");
 
 
         //        create Product
         Product product3 = new Product();
-        product3.setName("product 8");
-        product3.setDescription("Product 8 description");
-        product3.setSku("800ABC");
-        product3.setPrice(new BigDecimal(89.99));
+        product3.setName("product 3");
+        product3.setDescription("Product 3 description");
+        product3.setSku("300ABC");
+        product3.setPrice(new BigDecimal(39.99));
         product3.setActive(false);
-        product3.setImageUrl("product8.png");
+        product3.setImageUrl("product3.png");
 
 
 //        save Product
