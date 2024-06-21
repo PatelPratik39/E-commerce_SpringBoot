@@ -63,7 +63,7 @@ public class QueryMethodsTest {
         System.out.println(product.getDescription());
     }
     @Test
-    void findByPriceGreaterThan(){
+    void findByPriceGreaterThanMethod(){
         List<Product> products = productRepository.findByPriceGreaterThan(new BigDecimal(80));
         products.forEach((product) -> {
             System.out.println(product.getId());
@@ -74,7 +74,7 @@ public class QueryMethodsTest {
     }
 
     @Test
-    void findByPriceLessThan(){
+    void findByPriceLessThanMethod(){
         List<Product> products = productRepository.findByPriceLessThan(new BigDecimal(70));
         products.forEach((product) -> {
             System.out.println(product.getId());
@@ -82,5 +82,32 @@ public class QueryMethodsTest {
             System.out.println(product.getDescription());
             System.out.println(product.getActive());
         });
+    }
+
+    @Test
+    void findByNameContainingMethod() {
+        List<Product> products = productRepository.findByNameContaining("product 7");
+        products.forEach((product) -> {
+            System.out.println(product.getId());
+            System.out.println(product.getName());
+        });
+
+    }
+    @Test
+    void findByNameLikeMethod(){
+        List<Product> products = productRepository.findByNameLike("%product%");
+        products.forEach((product) -> {
+            System.out.println(product.getId());
+            System.out.println(product.getName());
+        });
+    }
+
+    @Test
+    void findByPriceBetweenMethod(){
+        List<Product> products = productRepository.findByPriceBetween(new BigDecimal(70), new BigDecimal(90));
+        products.forEach((product -> {
+            System.out.println(product.getId());
+            System.out.println(product.getName());
+        }));
     }
 }

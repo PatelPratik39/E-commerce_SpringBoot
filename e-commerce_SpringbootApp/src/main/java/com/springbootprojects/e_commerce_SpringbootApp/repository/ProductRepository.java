@@ -31,4 +31,12 @@ public interface ProductRepository  extends JpaRepository<Product, Long> {
 
     List<Product>findByPriceLessThan(BigDecimal price);
 
+//    Containing value query method
+    List<Product> findByNameContaining(String name);
+
+//    Find by Like
+    List<Product> findByNameLike(String name);
+
+    List<Product> findByPriceBetween(BigDecimal startPrice, BigDecimal endPrice);
+
 }
