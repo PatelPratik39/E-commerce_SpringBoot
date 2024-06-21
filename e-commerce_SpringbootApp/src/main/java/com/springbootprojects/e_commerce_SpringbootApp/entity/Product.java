@@ -34,7 +34,7 @@ public class Product {
     @Column(name= "stock_keeping_unit", nullable = false)
     private String sku;       //SKU => stock keeping unit
     @Column(nullable = false)
-    private String productName;
+    private String name;
 
 
     private String description;

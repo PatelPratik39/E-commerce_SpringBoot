@@ -21,7 +21,7 @@ class ProductRepositoryTest {
     void saveMethod(){
 //        create Product
         Product product = new Product();
-        product.setProductName("product1");
+        product.setName("product1");
         product.setDescription("Product1 description");
         product.setSku("100ABC");
         product.setPrice(new BigDecimal(100.99));
@@ -44,7 +44,7 @@ class ProductRepositoryTest {
         Product product = productRepository.findById(id).get();
 
 //        update entity
-        product.setProductName("updated Product 4");
+        product.setName("updated Product 4");
         product.setDescription("Updated Product 4 description");
 
 //        save updated entity to a database
@@ -62,7 +62,7 @@ class ProductRepositoryTest {
     void saveAll() {
 //        create Product
         Product product1 = new Product();
-        product1.setProductName("product 6");
+        product1.setName("product 6");
         product1.setDescription("Product 6 description");
         product1.setSku("600ABC");
         product1.setPrice(new BigDecimal(69.99));
@@ -72,7 +72,7 @@ class ProductRepositoryTest {
 
         //        create Product
         Product product2 = new Product();
-        product2.setProductName("product 7");
+        product2.setName("product 7");
         product2.setDescription("Product 7 description");
         product2.setSku("700ABC");
         product2.setPrice(new BigDecimal(79.99));
@@ -82,7 +82,7 @@ class ProductRepositoryTest {
 
         //        create Product
         Product product3 = new Product();
-        product3.setProductName("product 8");
+        product3.setName("product 8");
         product3.setDescription("Product 8 description");
         product3.setSku("800ABC");
         product3.setPrice(new BigDecimal(89.99));
@@ -105,7 +105,7 @@ class ProductRepositoryTest {
 //        verify that the list is not empty
         assertFalse(products.isEmpty(), "The Products List should not be empty!");
         products.forEach((p) -> {
-            System.out.println(p.getProductName());
+            System.out.println(p.getName());
         });
     }
 
