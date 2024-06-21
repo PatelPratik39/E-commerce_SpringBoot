@@ -2,6 +2,7 @@ package com.springbootprojects.e_commerce_SpringbootApp.repository;
 
 import com.springbootprojects.e_commerce_SpringbootApp.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -51,5 +52,16 @@ public interface ProductRepository  extends JpaRepository<Product, Long> {
     List<Product> findFirst6ByOrderByNameAsc();
 
     List<Product> findTop3ByOrderByPriceDesc();
+
+    /*
+
+    Define JPQL Query using @Query annotation
+
+     */
+
+    @Query("SELECT p from Product p where p.name = ?1 or p.description = ?2")
+    Product findByNameOrDescriptionJPQLIndexParam(String name, String description);
+
+
 
 }
