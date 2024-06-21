@@ -9,13 +9,12 @@ import com.ecommerce.springboot_transaction_demo.repository.OrderRepository;
 import com.ecommerce.springboot_transaction_demo.repository.PaymentRepository;
 import com.ecommerce.springboot_transaction_demo.service.OrderService;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
 @Service
-@NoArgsConstructor
 @AllArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
@@ -24,7 +23,9 @@ public class OrderServiceImpl implements OrderService {
     private OrderRepository orderRepository;
     private PaymentRepository paymentRepository;
 
+
     @Override
+    @Transactional(rollbackFor = PaymentException.class)
     public OrderResponse placeOrder(OrderRequest orderRequest) {
 
 //        created Order
