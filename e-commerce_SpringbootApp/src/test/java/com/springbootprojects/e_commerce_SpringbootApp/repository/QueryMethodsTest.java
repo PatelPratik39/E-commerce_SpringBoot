@@ -145,4 +145,12 @@ public class QueryMethodsTest {
             System.out.println(product.getName());
         } );
     }
+    @Test
+    void findTop3ByOrderByPriceDescMethod(){
+        List<Product> products = productRepository.findTop3ByOrderByPriceDesc();
+        products.forEach((product) -> {
+            System.out.println(product.getId());
+            System.out.println(product.getName());
+        } );
+    }
 }

@@ -50,4 +50,6 @@ public interface ProductRepository  extends JpaRepository<Product, Long> {
 //    Limit the query
     List<Product> findFirst6ByOrderByNameAsc();
 
+    List<Product> findTop3ByOrderByPriceDesc();
+
 }
