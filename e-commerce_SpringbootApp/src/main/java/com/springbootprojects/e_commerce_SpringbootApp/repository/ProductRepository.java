@@ -3,6 +3,7 @@ package com.springbootprojects.e_commerce_SpringbootApp.repository;
 import com.springbootprojects.e_commerce_SpringbootApp.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,4 +21,14 @@ public interface ProductRepository  extends JpaRepository<Product, Long> {
     List<Product> findByNameOrDescription(String name, String description);
 
     List<Product> findByNameAndDescription(String name, String description);
+
+//    Query to find a Distinct product or a unique product Method
+    public Product findDistinctByName(String name);
+
+
+//    return Product that price is greater than given price method
+    List<Product> findByPriceGreaterThan(BigDecimal price);
+
+    List<Product>findByPriceLessThan(BigDecimal price);
+
 }
