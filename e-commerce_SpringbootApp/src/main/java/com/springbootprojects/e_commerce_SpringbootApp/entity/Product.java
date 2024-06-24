@@ -1,5 +1,6 @@
 package com.springbootprojects.e_commerce_SpringbootApp.entity;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -15,14 +15,49 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@ToString
+//@NamedQuery(
+//        name = "Product.findByPrice",
+//        query = "SELECT p from Product p where p.price = :price"
+//)
+
+@NamedQueries({
+        @NamedQuery(
+                name = "Product.findAllOrderByNameDesc",
+                query = "SELECT p from Product p ORDER By p.name DESC"
+        ),
+        @NamedQuery(
+                name = "Product.findByPrice",
+                query = "SELECT p from Product p where p.price = :price"
+        )
+})
+
+//@NamedNativeQuery(
+//        name = "Product.findByDescription",
+//        query = "SELECT * FROM products p where p.description = :description",
+//        resultClass = Product.class
+//)
+@NamedNativeQueries(
+        {
+                @NamedNativeQuery(
+                        name = "Product.findByDescription",
+                        query = "SELECT * FROM products p where p.description = :description",
+                        resultClass = Product.class
+                ),
+                @NamedNativeQuery(
+                        name= "Product.findAllOrderByNameASC",
+                        query = "select * from products order by name asc",
+                        resultClass = Product.class
+                )
+        }
+)
 @Table(name = "products",
         schema = "eCommerce",
         uniqueConstraints = {
-            @UniqueConstraint(name = "sku_unique",
-                    columnNames = "sku")
+                @UniqueConstraint(name = "sku_unique",
+                        columnNames = "sku")
         }
 )
-@ToString
 public class Product {
 
     @Id
