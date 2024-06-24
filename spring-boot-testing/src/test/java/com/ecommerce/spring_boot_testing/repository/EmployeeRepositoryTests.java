@@ -100,7 +100,7 @@ public class EmployeeRepositoryTests {
     //    JUnit test for
         @DisplayName("Update Employee Junit test case")
         @Test
-        public void givenemployeeObject_whenUpdatedEmployee_thenReturnUpdatedEmployee(){
+        public void givenEmployeeObject_whenUpdatedEmployee_thenReturnUpdatedEmployee(){
 
     //        Given - Pre-condition or setup test
             Employee employee = Employee.builder().firstName("Mangoo").lastName("Moti").email("mangoo@email.com").build();
@@ -117,22 +117,40 @@ public class EmployeeRepositoryTests {
             assertThat(updatedEmployee.getFirstName()).isEqualTo("Mangoo Gondi");
         }
 
-        //    JUnit test for
-            @DisplayName("JUnit test for remove employee from database")
-            @Test
-            public void givenEmployeeObject_whenDelete_thenRemoveEmployee(){
-
+        //    JUnit test for delete employee
+      @DisplayName("JUnit test for remove employee from database")
+      @Test
+      public void givenEmployeeObject_whenDelete_thenRemoveEmployee(){
         //        Given - Pre-condition or setup test
-                Employee employee = Employee.builder().firstName("Mangoo").lastName("Moti").email("mangoo@email.com").build();
-                employeeRepository.save(employee);
+          Employee employee = Employee.builder().firstName("Mangoo").lastName("Moti").email("mangoo@email.com").build();
+          employeeRepository.save(employee);
 
         //        When - action or the behavior that we are going to test
-                employeeRepository.deleteById(employee.getId());
-                Optional<Employee> employeeOptional = employeeRepository.findById(employee.getId());
+          employeeRepository.deleteById(employee.getId());
+          Optional<Employee> employeeOptional = employeeRepository.findById(employee.getId());
 
         //        then - verify the output
-                assertThat(employeeOptional).isEmpty();
+          assertThat(employeeOptional).isEmpty();
+     }
 
-            }
+
+     //    JUnit test for Custom Query using JPQL
+         @DisplayName("JUnit test for JPQL Query")
+         @Test
+         public void givenFirstNameAndLastName_whenFindByJPQL_thenReturnObject(){
+
+     //        Given - Pre-condition or setup test
+             Employee employee = Employee.builder().firstName("Mangoo").lastName("Moti").email("mangoo@email.com").build();
+             employeeRepository.save(employee);
+             String firstName = "Mangoo";
+             String lastName = "Moti";
+
+     //        When - action or the behavior that we are going to test
+             Employee savedEmployee = employeeRepository.findByJPQL(firstName, lastName);
+
+     //        then - verify the output
+             assertThat(savedEmployee).isNotNull();
+
+         }
 
 }
