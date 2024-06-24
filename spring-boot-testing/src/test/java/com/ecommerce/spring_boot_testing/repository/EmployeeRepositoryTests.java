@@ -153,4 +153,24 @@ public class EmployeeRepositoryTests {
 
          }
 
+
+    //    JUnit test for Custom Query using JPQL
+    @DisplayName("JUnit test for JPQL Query with Named Params")
+    @Test
+    public void givenFirstNameAndLastName_whenFindByJPQLNamedParams_thenReturnObject(){
+
+        //        Given - Pre-condition or setup test
+        Employee employee = Employee.builder().firstName("Mangoo").lastName("Moti").email("mangoo@email.com").build();
+        employeeRepository.save(employee);
+        String firstName = "Mangoo";
+        String lastName = "Moti";
+
+        //        When - action or the behavior that we are going to test
+        Employee savedEmployee = employeeRepository.findByJPQLNamedParams(firstName, lastName);
+
+        //        then - verify the output
+        assertThat(savedEmployee).isNotNull();
+
+    }
+
 }
