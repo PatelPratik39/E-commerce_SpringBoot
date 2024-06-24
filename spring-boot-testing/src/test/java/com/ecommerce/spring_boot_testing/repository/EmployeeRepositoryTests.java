@@ -173,4 +173,22 @@ public class EmployeeRepositoryTests {
 
     }
 
+
+    //    JUnit test for Custom Query using Native Query
+    @DisplayName("JUnit test for JPQL Query with Native Query")
+    @Test
+    public void givenFirstNameAndLastName_whenFindByNativeSQL_thenReturnObject(){
+
+        //        Given - Pre-condition or setup test
+        Employee employee = Employee.builder().firstName("Mangoo").lastName("Moti").email("mangoo@email.com").build();
+        employeeRepository.save(employee);
+
+        //        When - action or the behavior that we are going to test
+        Employee foundEmployee = employeeRepository.findByNativeSQL(employee.getFirstName(), employee.getLastName());
+
+        //        then - verify the output
+        assertThat(foundEmployee).isNotNull();
+
+    }
+
 }
