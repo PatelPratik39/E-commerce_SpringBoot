@@ -79,5 +79,27 @@ public class PaginationAndSortingTest {
         });
     }
 
+    //    Multiple field Sorting using JPA
+    @Test
+    void sortingByMultipleFields(){
+        String sortBy = "name";
+        String sortByDesc = "description";
+        String sortDir = "desc";
+
+        Sort sortByName = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ?
+                Sort.by(sortBy).ascending(): Sort.by(sortBy).descending();
+
+        Sort sortByDescription = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ?
+                Sort.by(sortByDesc).ascending(): Sort.by(sortByDesc).descending();
+
+        Sort groupBySort = sortByName.and(sortByDescription);
+
+        List<Product> products = productRepository.findAll(groupBySort);
+
+        products.forEach((p) -> {
+            System.out.println(p);
+        });
+    }
+
 
 }
