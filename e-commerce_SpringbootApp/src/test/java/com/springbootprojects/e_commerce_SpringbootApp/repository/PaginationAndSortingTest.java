@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
@@ -58,5 +59,25 @@ public class PaginationAndSortingTest {
         System.out.println(" isFirst -> "+ isFirst);
 
     }
+
+    @Test
+    void sorting(){
+        String sortBy = "price";
+        String sortDir = "desc";
+//Sorting dynamically based on previous status
+
+        Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending():Sort.by(sortBy).descending();
+
+//        List<Product> products = productRepository.findAll(Sort.by(sortBy).descending());
+//        List<Product> products = productRepository.findAll(Sort.by(sortBy));
+
+//        conditional Sorting
+        List<Product> products = productRepository.findAll(sort);
+
+        products.forEach((p) -> {
+            System.out.println(p);
+        });
+    }
+
 
 }
