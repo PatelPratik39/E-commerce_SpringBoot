@@ -101,5 +101,53 @@ public class PaginationAndSortingTest {
         });
     }
 
+    @Test
+    void paginationAndSortingTogether(){
+
+        String sortBy = "price";
+        String sortDir = "desc";
+        int pageNo = 0;
+        int pageSize = 5;
+
+//        Sort Object using ternary operator
+        Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+
+//        Pagination Object using ternary Operator
+        Pageable pageable = PageRequest.of(pageNo, pageSize,sort);
+
+        Page<Product> page = productRepository.findAll(pageable);
+
+        List<Product> products = page.getContent();
+
+        products.forEach((p) -> {
+            System.out.println(p);
+        });
+
+
+//        total pages
+        int totalPage = page.getTotalPages();
+
+//        total elements
+        long totalElements = page.getTotalElements();
+
+//        total of elements
+        int numberOfElements = page.getNumberOfElements();
+
+//        size
+        int size = page.getSize();
+
+//        last
+        boolean isLast = page.isLast();
+//        first
+        boolean isFirst = page.isFirst();
+        System.out.println("total Page -> " + totalPage);
+        System.out.println("totalElements -> " + totalElements);
+        System.out.println(" Number Of Elements -> " + numberOfElements);
+        System.out.println(" Size -> " + size);
+        System.out.println(" isLast -> " + isLast);
+        System.out.println(" isFirst -> "+ isFirst);
+
+    }
+
 
 }
